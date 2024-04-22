@@ -26,9 +26,17 @@ class LoginController extends AbstractController
     public function redirectLogin(Security $security): Response
     {
         if($security->isGranted('ROLE_ADMIN')) {
+
             return $this->redirectToRoute('app_claims_index');
+
+        } elseif($security->isGranted('ROLE_MANAGER')) {
+
+            return $this->redirectToRoute('app_manager_claims_index');
+
         } else {
+
             return $this->redirectToRoute('app_user_claims_index');
+
         }
     }
 }

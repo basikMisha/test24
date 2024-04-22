@@ -70,7 +70,13 @@ class ClaimVoter extends Voter
     private function canEdit(Claim $claim, User $user): bool
     {
         if($this->security->isGranted('ROLE_ADMIN')) {
+
             return true;
+
+        } elseif($this->security->isGranted('ROLE_MANAGER')) {
+
+            return true;
+
         }
 
         return $user === $claim->getUser();

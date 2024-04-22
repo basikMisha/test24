@@ -14,7 +14,10 @@ class ClaimFilterType extends AbstractType
     {
         $builder
             ->setMethod('GET')
-            ->add('title', TextType::class, ['required' => false])
+            ->add('title', TextType::class, [
+                'required' => false,
+                'label' => 'Поиск по заголовку',
+            ])
         ;
     }
 

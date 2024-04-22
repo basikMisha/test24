@@ -32,45 +32,33 @@ class ClaimType extends AbstractType
                 'help' => 'Заполните заголовок',
                 'attr' => [
                     'class' => 'myclass'
-                ]
+                ],
+                'label' => 'Заголовок',
             ])
             
-            ->add('text', TextareaType::class, ['required' => false])
+            ->add('text', TextareaType::class, [
+                'required' => false,
+                'label' => 'Описание',
+            ])
 
-            ->add('comments', TextType::class, array (
-                'label' => 'Tags',
+            ->add('comments', TextareaType::class, array (
+                'label' => 'Комментарии',
                 'required' => false,
             ))
             ;
-            if($this->security->isGranted('ROLE_ADMIN')) {
+            if($this->security->isGranted('ROLE_ADMIN') || $this->security->isGranted('ROLE_MANAGER')) {
                 $builder->add('claimstatus', EntityType::class, [
-                    // looks for choices from this entity
                     'class' => ClaimStatus::class,
-                    //не обязательно выбирать категорию либо убрать уже существующую
                     'required' => false,
                     'empty_data' => '',
-                    // uses the User.username property as the visible option string
                     'choice_label' => 'name',
-                    'placeholder' => '-- выбор категории --'
+                    'label' => 'Статус',
+                    'placeholder' => '-- выбор статуса --'
                 ]);
             }
             $builder->get('comments')
             ->addModelTransformer($this->transformer);
         ;
-
-
-        // $builder
-        // ->add('title')
-        // ->add('text')
-        // ->add('category', TextType::class, [
-        //     // Опционально: убери 'required' и 'empty_data', чтобы разрешить пустое значение
-        //     'required' => false,
-        //     'empty_data' => null,
-        //     // Опционально: укажи атрибуты для поля ввода
-        //     'attr' => [
-        //         'placeholder' => 'Введите название категории',
-        //     ],
-        // ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

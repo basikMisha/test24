@@ -12,10 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-/**
- * app_comments_index = app_claims_index
- * 
- */
+
 #[Route('/admin/claims')]
 class ClaimController extends AbstractController
 {
