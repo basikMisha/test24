@@ -1,0 +1,37 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Claims{% endblock %}
+
+{% block body %}
+    <h1>Claims</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ claim.id }}</td>
+            </tr>
+            <tr>
+                <th>Title</th>
+                <td>{{ claim.title }}</td>
+            </tr>
+            {% if claim.category %}
+            <tr>
+                <th>Claim Status</th>
+                <td>{{ claim.claimstatus.name }}</td>
+                <td>{{ claim.claimstatus.FullName}}</td>
+            </tr>
+            {%endif %}
+            <tr>
+                <th>Text</th>
+                <td>{{ claim.text }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_claims_index') }}">back to list</a>
+
+    <a href="{{ path('app_claims_edit', {'id': claim.id}) }}">edit</a>
+
+    {{ include('claims/_delete_form.html.twig') }}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Claim Status{% endblock %}
+
+{% block body %}
+    </br>
+    <h2>Создать новый статус заявки</h2>
+    </br>
+    {{ include('claimstatus/_form.html.twig') }}
+    </br>
+    <a href="{{ path('app_claimstatus_index') }}">обратно к списку</a>
+{% endblock %}

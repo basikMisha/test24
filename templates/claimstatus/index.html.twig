@@ -1,0 +1,36 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Claim Status index{% endblock %}
+
+{% block body %}
+    </br>
+    <h2>Статусы заявок</h2>
+    </br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>Название</th>
+                <th>Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for claimStatus in claimStatuses %}
+            <tr>
+                <td>{{ claimStatus.id }}</td>
+                <td>{{ claimStatus.name }}</td>
+                <td>
+                    <a href="{{ path('app_claimstatus_edit', {'id': claimStatus.id}) }}">изменить</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </br>
+    <a href="{{ path('app_claimstatus_new') }}">Создать новый статус</a>
+
+{% endblock %}  

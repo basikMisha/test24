@@ -1,0 +1,15 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Новая заявка{% endblock %}
+
+{% block body %}
+    <h2>Создать новую заявку</h2>
+
+    {{ include('claims/_form.html.twig') }}
+
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('app_claims_index') }}">назад к списку</a>
+    {% else %}
+    <a href="{{ path('app_user_claims_index') }}">назад к списку</a>
+    {% endif %}
+{% endblock %}
